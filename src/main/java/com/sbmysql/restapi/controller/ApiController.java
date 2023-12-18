@@ -86,7 +86,6 @@ public class ApiController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/users")
     public ResponseEntity saveUser(@RequestBody UserModel user) {
         UserEntity userEntity = new UserEntity();
