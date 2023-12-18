@@ -1,9 +1,8 @@
-package com.sbmysql.restapi.controller;
+package com.restapi.controller;
 
-import com.sbmysql.restapi.entities.UserEntity;
-import com.sbmysql.restapi.models.UserModel;
-import com.sbmysql.restapi.repo.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.restapi.entities.UserEntity;
+import com.restapi.models.UserModel;
+import com.restapi.repo.UserRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

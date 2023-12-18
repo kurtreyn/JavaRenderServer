@@ -1,4 +1,4 @@
-package com.sbmysql.restapi.entities;
+package com.restapi.entities;
 
 import jakarta.persistence.*;
 import java.util.Base64;
