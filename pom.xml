@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sbmysql</groupId>
-	<artifactId>restapi</artifactId>
+	<artifactId>JavaRenderServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>restapi</name>
+	<name>JavaRenderServer</name>
 	<description>Java Render Server</description>
 	<properties>
 		<java.version>17</java.version>
