@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="chdn-twinspires" />
       <option name="name" value="chdn-twinspires" />
       <option name="url" value="https://chdn-991287373611.d.codeartifact.us-west-2.amazonaws.com/maven/twinspires/" />
