@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @RestController
 public class ApiController {
-//    @Autowired
     UserRepo userRepo;
 
     public ApiController(UserRepo userRepo) {
@@ -55,7 +54,6 @@ public class ApiController {
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/users/email")
     public ResponseEntity<UserModel> getUserByEmail(@RequestParam String email) {
-//        http://localhost:8080/users/email?email=kurt@email.com
         Optional<UserEntity> userOptional = Optional.ofNullable(userRepo.findByEmail(email));
         if (!userOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -72,7 +70,6 @@ public class ApiController {
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/users/name")
     public ResponseEntity<UserModel> getUserByName(@RequestParam String name) {
-//        http://localhost:8080/users/name?name=Kurt
         Optional<UserEntity> userOptional = Optional.ofNullable(userRepo.findByName(name));
         if (userOptional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
