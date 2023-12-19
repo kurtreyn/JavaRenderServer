@@ -26,6 +26,7 @@ public class ApiController {
         return "Server is running";
     }
 
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/users")
     public ResponseEntity<List<UserModel>> getUsers() {
         List<UserEntity> users = userRepo.findAll();
@@ -85,6 +86,7 @@ public class ApiController {
         }
     }
 
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @PostMapping("/users")
     public ResponseEntity saveUser(@RequestBody UserModel user) {
         UserEntity userEntity = new UserEntity();
