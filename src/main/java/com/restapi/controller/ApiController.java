@@ -20,7 +20,7 @@ public class ApiController {
         this.userRepo = userRepo;
     }
 
-
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/")
     public String getPage() {
         return "Server is running";
@@ -41,7 +41,7 @@ public class ApiController {
         return new ResponseEntity<List<UserModel>>(userModels, HttpStatus.OK);
     }
 
-
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/users/{id}")
     public ResponseEntity<UserModel> getUser(@PathVariable long id) {
         UserEntity user = userRepo.findById(id).get();
@@ -52,7 +52,7 @@ public class ApiController {
         return new ResponseEntity<>(userModel, HttpStatus.OK);
     }
 
-
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/users/email")
     public ResponseEntity<UserModel> getUserByEmail(@RequestParam String email) {
 //        http://localhost:8080/users/email?email=kurt@email.com
@@ -69,7 +69,7 @@ public class ApiController {
         }
     }
 
-
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @GetMapping("/users/name")
     public ResponseEntity<UserModel> getUserByName(@RequestParam String name) {
 //        http://localhost:8080/users/name?name=Kurt
@@ -97,7 +97,7 @@ public class ApiController {
         return new ResponseEntity(user, HttpStatus.CREATED);
     }
 
-
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @PutMapping("/users/{id}")
     public ResponseEntity updateUser(@PathVariable long id, @RequestBody UserModel user){
         UserEntity updatedUser = userRepo.findById(id).get();
@@ -106,7 +106,7 @@ public class ApiController {
         userRepo.save(updatedUser);
         return new ResponseEntity(user, HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @DeleteMapping("/users/{id}")
     public ResponseEntity deleteUser(@PathVariable long id) {
         userRepo.deleteById(id);
