@@ -36,12 +36,26 @@ public class UserModel {
     public void setEmail(String email) { this.email = email; }
 
     public String getPassword() {
-        Decoder decoder = Base64.getDecoder();
-        return new String(decoder.decode(password));
+        if (password == null) {
+            return null;
+        }
+
+        try {
+            Base64.Decoder decoder = Base64.getDecoder();
+            String decodedPassword = new String(decoder.decode(password));
+            return decodedPassword;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setPassword(String password) {
-        Encoder encoder = Base64.getEncoder();
+        if (password == null) {
+            throw new IllegalArgumentException("Password cannot be null");
+        }
+
+        Base64.Encoder encoder = Base64.getEncoder();
         this.password = encoder.encodeToString(password.getBytes());
     }
 
