@@ -3,8 +3,6 @@ package com.restapi.models;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Base64;
-import java.util.Base64.Encoder;
-import java.util.Base64.Decoder;
 
 public class UserModel {
 
