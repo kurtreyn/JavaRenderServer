@@ -3,6 +3,8 @@ package com.restapi.models;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Base64;
+import java.util.Base64.Encoder;
+import java.util.Base64.Decoder;
 
 public class UserModel {
 
@@ -34,12 +36,12 @@ public class UserModel {
     public void setEmail(String email) { this.email = email; }
 
     public String getPassword() {
+        Base64.Decoder decoder = Base64.getDecoder();
         if (password == null) {
             return null;
         }
 
         try {
-            Base64.Decoder decoder = Base64.getDecoder();
             String decodedPassword = new String(decoder.decode(password));
             return decodedPassword;
         } catch (Exception e) {
@@ -49,11 +51,12 @@ public class UserModel {
     }
 
     public void setPassword(String password) {
+        Base64.Encoder encoder = Base64.getEncoder();
         if (password == null) {
             throw new IllegalArgumentException("Password cannot be null");
         }
 
-        Base64.Encoder encoder = Base64.getEncoder();
+        encoder = Base64.getEncoder();
         this.password = encoder.encodeToString(password.getBytes());
     }
 

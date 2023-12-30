@@ -25,7 +25,8 @@ public class ApiController {
         return "Server is running";
     }
 
-    @CrossOrigin(origins = "https://kr-login.netlify.app/")
+//    @CrossOrigin(origins = "https://kr-login.netlify.app/")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/users")
     public ResponseEntity<List<UserModel>> getUsers() {
         List<UserEntity> users = userRepo.findAll();
@@ -83,8 +84,9 @@ public class ApiController {
         }
     }
 
-    @CrossOrigin(origins = "https://kr-login.netlify.app/")
-    @PostMapping("/users")
+//    @CrossOrigin(origins = "https://kr-login.netlify.app/")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/signup")
     public ResponseEntity saveUser(@RequestBody UserModel user) {
         UserEntity userEntity = new UserEntity();
         userEntity.setName(user.getName());
@@ -92,6 +94,26 @@ public class ApiController {
         userEntity.setPassword(user.getPassword());
         userRepo.save(userEntity);
         return new ResponseEntity(user, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/login")
+    public ResponseEntity loginUser(@RequestBody UserModel user) {
+        UserEntity userEntity = new UserEntity();
+        String givenEmail = user.getEmail();
+        String givenPassword = user.getPassword();
+        userEntity = userRepo.findByEmail(givenEmail);
+        System.out.println(userEntity);
+        if (userEntity == null) {
+            return new ResponseEntity("User not found", HttpStatus.NOT_FOUND);
+        } else {
+            String actualPassword = userEntity.getPassword();
+            if (givenPassword.equals(actualPassword)) {
+                return new ResponseEntity(user, HttpStatus.OK);
+            } else {
+                return new ResponseEntity("Incorrect password", HttpStatus.UNAUTHORIZED);
+            }
+        }
     }
 
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
