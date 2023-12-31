@@ -32,6 +32,7 @@ public class ApiController {
     public ResponseEntity<HashMap<String, String>> wakeup() {
         HashMap<String, String> response = new HashMap<>();
         response.put("status", "ready");
+        System.out.println("response: " + response);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -103,6 +104,7 @@ public class ApiController {
         userEntity.setEmail(user.getEmail());
         userEntity.setPassword(user.getPassword());
         userRepo.save(userEntity);
+        System.out.println("saved user: " + user.getName());
         return new ResponseEntity(user, HttpStatus.CREATED);
     }
 
@@ -120,6 +122,7 @@ public class ApiController {
         } else {
             String actualPassword = userEntity.getPassword();
             if (givenPassword.equals(actualPassword)) {
+                System.out.println("logging user in: " + user.getName());
                 return new ResponseEntity(user, HttpStatus.OK);
             } else {
                 return new ResponseEntity("Incorrect password", HttpStatus.UNAUTHORIZED);
@@ -139,7 +142,15 @@ public class ApiController {
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
     @DeleteMapping("/users/{id}")
     public ResponseEntity deleteUser(@PathVariable long id) {
-        userRepo.deleteById(id);
-        return new ResponseEntity("user deleted",HttpStatus.OK);
+        try {
+            if(userRepo.findById(id).isPresent()) {
+                userRepo.deleteById(id);
+                return new ResponseEntity(HttpStatus.OK);
+            } else {
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
