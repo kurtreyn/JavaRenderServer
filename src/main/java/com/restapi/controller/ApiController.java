@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,10 @@ public class ApiController {
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
     //    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/wakeup")
-    public ResponseEntity<String> wakeup() {
-        return new ResponseEntity("server ready", HttpStatus.OK);
+    public ResponseEntity<HashMap<String, String>> wakeup() {
+        HashMap<String, String> response = new HashMap<>();
+        response.put("status", "ready");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
