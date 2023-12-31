@@ -28,7 +28,7 @@ public class ApiController {
     @CrossOrigin(origins = "https://kr-login.netlify.app/")
     //    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/wakeup")
-    public ResponseEntity wakeup() {
+    public ResponseEntity<String> wakeup() {
         return new ResponseEntity("server ready", HttpStatus.OK);
     }
 
